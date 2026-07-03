@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>時間革命セミナー まとめ｜眞角陽子</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #fdf6ff;
+    color: #1a1a2e;
+    line-height: 1.7;
+  }
+
+  /* ヘッダー */
+  .hero {
+    background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 100%);
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+  .hero-date {
+    font-size: 13px; font-weight: 700; color: #9e86d3;
+    letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .hero-title {
+    font-size: clamp(28px, 6vw, 52px);
+    font-weight: 900; color: #1a1a2e; line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .hero-title span { color: #e91e8c; }
+  .hero-sub {
+    font-size: 16px; color: #666; margin-bottom: 28px;
+  }
+  .hero-author {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: white; border-radius: 99px;
+    padding: 10px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    font-size: 14px; font-weight: 700; color: #1a1a2e;
+  }
+  .hero-author span { color: #9e86d3; font-weight: 400; font-size: 12px; }
+
+  /* コンテナ */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+  /* セクション */
+  .section { padding: 48px 0 0; }
+  .section-label {
+    display: inline-block;
+    background: linear-gradient(90deg, #7c6fcd, #e91e8c);
+    color: white; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.15em; padding: 4px 14px;
+    border-radius: 99px; margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 900; color: #1a1a2e; margin-bottom: 24px;
+    line-height: 1.3;
+  }
+  .section-title span { color: #e91e8c; }
+
+  /* ビッグメッセージ */
+  .big-message {
+    background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
+    border-radius: 16px; padding: 32px 28px;
+    text-align: center; margin-bottom: 32px;
+  }
+  .big-message .label { font-size: 13px; color: #9e86d3; margin-bottom: 12px; }
+  .big-message .main {
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 900; color: white; line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .big-message .main span { color: #fde68a; }
+  .big-message .sub { font-size: 15px; color: #aaa; }
+
+  /* カード */
+  .card {
+    background: white; border-radius: 14px;
+    padding: 24px; margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid #7c6fcd;
+  }
+  .card.pink { border-left-color: #e91e8c; }
+  .card.yellow { border-left-color: #f59e0b; }
+  .card.green { border-left-color: #4ade80; }
+  .card.dark { background: #1a1a2e; border-left-color: #fde68a; }
+
+  .card-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, #7c6fcd, #e91e8c);
+    color: white; font-size: 14px; font-weight: 900;
+    margin-bottom: 10px;
+  }
+  .card-num.yellow { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .card-num.green { background: linear-gradient(135deg, #4ade80, #16a34a); }
+
+  .card-title {
+    font-size: 18px; font-weight: 900; color: #1a1a2e;
+    margin-bottom: 8px;
+  }
+  .card.dark .card-title { color: #fde68a; }
+  .card-body { font-size: 15px; color: #555; line-height: 1.7; }
+  .card.dark .card-body { color: #ccc; }
+
+  /* ポイントリスト */
+  .point-list { display: flex; flex-direction: column; gap: 12px; }
+  .point-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: white; border-radius: 12px; padding: 16px 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .point-icon {
+    font-size: 22px; flex-shrink: 0; margin-top: 2px;
+  }
+  .point-text { font-size: 15px; color: #333; line-height: 1.7; }
+  .point-text strong { color: #1a1a2e; }
+
+  /* 3つの柱 */
+  .pillars { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media(min-width: 600px) { .pillars { grid-template-columns: 1fr 1fr 1fr; } }
+
+  .pillar {
+    background: white; border-radius: 14px; padding: 24px 20px;
+    text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .pillar-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; color: white;
+    margin: 0 auto 12px;
+  }
+  .pillar-title { font-size: 17px; font-weight: 900; color: #1a1a2e; margin-bottom: 8px; }
+  .pillar-body { font-size: 13px; color: #666; line-height: 1.6; }
+
+  /* ワークまとめ */
+  .work-box {
+    background: #f8f5ff; border-radius: 14px; padding: 24px;
+    margin-bottom: 16px; border: 1.5px solid #e8e0ff;
+  }
+  .work-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #7c6fcd, #e91e8c);
+    color: white; font-size: 12px; font-weight: 700;
+    padding: 3px 12px; border-radius: 99px; margin-bottom: 10px;
+  }
+  .work-title { font-size: 17px; font-weight: 900; color: #1a1a2e; margin-bottom: 14px; }
+  .work-items { display: flex; flex-direction: column; gap: 8px; }
+  .work-item {
+    background: white; border-radius: 8px; padding: 10px 14px;
+    font-size: 14px; color: #333; display: flex; align-items: center; gap: 8px;
+  }
+  .work-item::before { content: "→"; color: #7c6fcd; font-weight: 700; }
+
+  /* 回復セクション */
+  .recovery-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .recovery-item {
+    background: white; border-radius: 10px; padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    font-size: 14px; font-weight: 700; color: #1a1a2e;
+  }
+
+  /* クロージング */
+  .closing {
+    background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 100%);
+    padding: 48px 24px; text-align: center; margin-top: 48px;
+  }
+  .closing-title {
+    font-size: clamp(18px, 4vw, 26px); font-weight: 900;
+    color: #1a1a2e; margin-bottom: 16px;
+  }
+  .closing-title span { color: #e91e8c; }
+  .closing-sub { font-size: 15px; color: #666; margin-bottom: 28px; }
+  .closing-btn {
+    display: inline-block; background: linear-gradient(90deg, #7c6fcd, #e91e8c);
+    color: white; font-size: 16px; font-weight: 700;
+    padding: 14px 36px; border-radius: 99px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(233,30,140,0.3);
+  }
+  .closing-line { font-size: 14px; color: #9e86d3; margin-top: 16px; }
+
+  /* フッター */
+  footer {
+    text-align: center; padding: 32px 24px;
+    font-size: 12px; color: #aaa;
+  }
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<div class="hero">
+  <div class="hero-date">7/4（土）21:00〜 開催</div>
+  <div class="hero-title">＼時間革命セミナー／<br><span>まとめ</span></div>
+  <div class="hero-sub">ママ美容師の「時間がない！」を手放す</div>
+  <div class="hero-author">
+    👩‍💼 眞角陽子（マスミヨウコ）
+    <span>@youco.kurukuru</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 今日の一番大事なこと -->
+  <div class="section">
+    <div class="section-label">KEY MESSAGE</div>
+    <div class="section-title">今日の<span>一番大事なこと</span></div>
+
+    <div class="big-message">
+      <div class="label">時間がないの正体</div>
+      <div class="main">「時間がない」は<br><span>気のせい</span></div>
+      <div class="sub">正確には——認知リソース（考える余裕）が足りていない</div>
+    </div>
+
+    <div class="point-list">
+      <div class="point-item">
+        <div class="point-icon">🔋</div>
+        <div class="point-text">脳には<strong>認知リソース（充電）</strong>があり、朝が100%。使い方次第で「時間がある感覚」が変わる</div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon">🚇</div>
+        <div class="point-text">「時間がない！」と感じると<strong>トンネル現象</strong>が起き、視野が狭まってさらに時間がなくなる悪循環に</div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon">📊</div>
+        <div class="point-text">ハーバード大学の研究で「足りない」と感じるだけで<strong>IQが13ポイント低下</strong>することが証明されている</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 充電泥棒3つ -->
+  <div class="section">
+    <div class="section-label">ENEMY</div>
+    <div class="section-title">脳の充電を奪う<span>3つの敵</span></div>
+
+    <div class="card pink">
+      <div class="card-num">1</div>
+      <div class="card-title">充電泥棒① 欠乏マインド</div>
+      <div class="card-body">「足りない・時間がない」という焦りモード。感じた瞬間にトンネル現象が始まり、判断力が低下する。</div>
+    </div>
+    <div class="card pink">
+      <div class="card-num">2</div>
+      <div class="card-title">充電泥棒② 時間汚染</div>
+      <div class="card-body">体はここにあるのに頭は別のことを考えている状態。切り替えのたびに充電が消耗する「頭の二股」。</div>
+    </div>
+    <div class="card pink">
+      <div class="card-num">3</div>
+      <div class="card-title">充電泥棒③ 未完了タスク</div>
+      <div class="card-body">やり残しが頭の中でずっと回り続ける。やっていない間も充電が勝手に減っていく。</div>
+    </div>
+  </div>
+
+  <!-- 逆転の3本柱 -->
+  <div class="section">
+    <div class="section-label">SOLUTION</div>
+    <div class="section-title">逆転の<span>タイムマネジメント</span></div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num" style="background:linear-gradient(135deg,#f59e0b,#d97706);">①</div>
+        <div class="pillar-title">やめる・手放す</div>
+        <div class="pillar-body">選択を減らし、脳の充電を守る</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num" style="background:linear-gradient(135deg,#7c6fcd,#5d4a8a);">②</div>
+        <div class="pillar-title">仕組み化する</div>
+        <div class="pillar-body">自分以外がやれるルールを作る</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num" style="background:linear-gradient(135deg,#4ade80,#16a34a);">③</div>
+        <div class="pillar-title">効率化する</div>
+        <div class="pillar-body">同じ種類の作業をまとめてやる</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- やめること具体例 -->
+  <div class="section">
+    <div class="section-label">TIPS ①</div>
+    <div class="section-title"><span>手放す・やめること</span>5つ</div>
+
+    <div class="point-list">
+      <div class="point-item">
+        <div class="point-icon">📝</div>
+        <div class="point-text"><strong>記憶を手放す（外部化）</strong><br>未完了タスクや気になることをメモに書き出して、一時的に忘れる</div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon">✅</div>
+        <div class="point-text"><strong>ルールを決めて考えない</strong><br>「〇〇が来たら△△する」というルールを作る。ご飯の献立や服装など</div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon">🎯</div>
+        <div class="point-text"><strong>選択肢を減らす</strong><br>お店の固定や商品を絞るなど、選択する行為自体を減らす</div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon">📵</div>
+        <div class="point-text"><strong>情報収集を制限する</strong><br>リサーチする時としない時を明確に分け、決めたことの実行に集中</div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon">🙌</div>
+        <div class="point-text"><strong>完璧主義をやめる</strong><br>〆切を決め、それ以上考え続けるのをやめる</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 回復 -->
+  <div class="section">
+    <div class="section-label">RECOVERY</div>
+    <div class="section-title">最後に…<span>回復</span>も必須</div>
+
+    <div class="card dark">
+      <div class="card-title">⚡ 認知リソースは意識的に回復させる</div>
+      <div class="card-body">認知リソースは1日で消費されるため、意識的に回復させることが必須！</div>
+    </div>
+
+    <div class="recovery-grid">
+      <div class="recovery-item"><span>😴</span>十分な睡眠をとる</div>
+      <div class="recovery-item"><span>🏃</span>運動をする</div>
+      <div class="recovery-item"><span>🌿</span>自然の中に身を置く</div>
+      <div class="recovery-item"><span>🧘</span>瞑想をする</div>
+      <div class="recovery-item" style="grid-column:1/-1;"><span>📵</span>デジタルデトックス（デジタル機器から離れる）</div>
+    </div>
+  </div>
+
+  <!-- ワーク -->
+  <div class="section">
+    <div class="section-label">TODAY'S WORK</div>
+    <div class="section-title">今日<span>決めたこと</span></div>
+
+    <div class="work-box">
+      <div class="work-badge">ワーク ①</div>
+      <div class="work-title">🗑️ 何をやめますか？</div>
+      <div class="work-items">
+        <div class="work-item">永遠と掃除する</div>
+        <div class="work-item">献立に悩む時間</div>
+        <div class="work-item">週に何回も買い物行く → 定期購買にする</div>
+        <div class="work-item">ゼロから毎回LINE作る</div>
+        <div class="work-item">１日何回も選択すること → 選択する回数を減らす</div>
+        <div class="work-item">「自分がやった方が早い」を手放す</div>
+      </div>
+    </div>
+
+    <div class="work-box">
+      <div class="work-badge">ワーク ②</div>
+      <div class="work-title">🔄 何を仕組み化しますか？</div>
+      <div class="work-items">
+        <div class="work-item">自分がいなくても回るルールをつくる</div>
+        <div class="work-item">投稿や返信を自動化する</div>
+        <div class="work-item">家族が自分で動けるルールを作る（画像・プリントで共有）</div>
+        <div class="work-item">テンプレートを活用し、特定曜日に特定タスクを行う</div>
+      </div>
+    </div>
+
+    <div class="work-box">
+      <div class="work-badge">ワーク ③</div>
+      <div class="work-title">⚡ 何を効率化しますか？</div>
+      <div class="work-items">
+        <div class="work-item">シングルタスク — 一つの作業に集中する</div>
+        <div class="work-item">バッチ処理 — 同じ種類の作業をまとめて行う</div>
+        <div class="work-item">朝の時間を計画・重要な思考に使う</div>
+        <div class="work-item">朝30分はスマホを見ず、自分と向き合う時間に</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="section">
+    <div class="section-label">CLOSING</div>
+    <div class="section-title">時間がないは、<span>気のせい</span></div>
+    <div class="point-list" style="margin-bottom:48px;">
+      <div class="point-item"><div class="point-icon">✅</div><div class="point-text">選択の回数を減らす</div></div>
+      <div class="point-item"><div class="point-icon">✅</div><div class="point-text">「足りない！」という思考を変換する</div></div>
+      <div class="point-item"><div class="point-icon">✅</div><div class="point-text">未完了タスクを全部外に出して脳の容量を空ける</div></div>
+      <div class="point-item"><div class="point-icon">✅</div><div class="point-text">マルチタスクをやめる（PCのタブを開きっぱなしにしない）</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- クロージング -->
+<div class="closing">
+  <div class="closing-title">個別サポートを<span>希望する方へ</span></div>
+  <div class="closing-sub">あなたのボトルネックを明確にし、本質から改善。<br>あなただけの専用サポートアプリを一緒に作ります。</div>
+  <a href="https://lin.ee/YXWLZ" class="closing-btn">LINEで「個別希望」と送る</a>
+  <div class="closing-line">@youco.kurukuru</div>
+</div>
+
+<footer>
+  © 2025 眞角陽子（マスミヨウコ）｜時間革命セミナー
+</footer>
+
+</body>
+</html>
