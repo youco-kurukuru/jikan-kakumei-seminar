@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>時間革命セミナー｜眞角陽子</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+    background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 40%, #f3e5f5 70%, #fce4ec 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .slide-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.92);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 44px 72px 40px;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  /* ラベル行 */
+  .slide-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #b0b0c8;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* プログレスバー */
+  .progress-bar {
+    height: 5px;
+    background: #ede7f6;
+    border-radius: 99px;
+    margin-bottom: 22px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c6fcd, #e91e8c);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+
+  /* タイトル */
+  .slide-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1a1a2e;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .slide-title .accent { color: #e91e8c; }
+  .slide-title .yellow { color: #f59e0b; }
+
+  .slide-sub {
+    font-size: 15px;
+    color: #7c6fcd;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #7c6fcd, #e91e8c);
+    border-radius: 99px;
+    margin-bottom: 20px;
+  }
+
+  /* コンテンツエリア */
+  .content { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+  /* Qリスト */
+  .q-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 16px;
+    border-left: 3px solid #7c6fcd;
+    background: rgba(124,111,205,0.06);
+    border-radius: 0 8px 8px 0;
+  }
+  .q-item .q-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #7c6fcd;
+    min-width: 28px;
+    padding-top: 1px;
+  }
+  .q-item .q-text {
+    font-size: 16px;
+    color: #2d2d4e;
+    line-height: 1.6;
+  }
+  .q-item .q-text .hi { color: #e91e8c; font-weight: 700; }
+  .q-item .q-text .hi2 { color: #f59e0b; font-weight: 700; }
+
+  /* ブレットリスト */
+  .bullet-list { display: flex; flex-direction: column; gap: 10px; }
+  .bullet-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 17px; color: #2d2d4e; line-height: 1.6;
+  }
+  .bullet-item .dot {
+    width: 8px; height: 8px; min-width:8px;
+    background: #7c6fcd; border-radius: 50%;
+    margin-top: 8px;
+  }
+  .bullet-item .arrow { color: #7c6fcd; font-weight: 700; min-width:20px; }
+
+  /* カードグリッド */
+  .card-grid { display: grid; gap: 12px; }
+  .card-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .card-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+  .card-grid.col4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .card {
+    background: #f8f5ff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid #e8e0ff;
+  }
+  .card.yellow { background: #fffbeb; border-color: #fde68a; }
+  .card.pink { background: #fff0f6; border-color: #fbb6ce; }
+  .card.dark { background: #1a1a2e; border-color: #1a1a2e; color: white; }
+
+  .card .card-num {
+    font-size: 28px; font-weight: 900; color: #7c6fcd;
+    line-height: 1; margin-bottom: 6px;
+  }
+  .card.yellow .card-num { color: #d97706; }
+  .card.pink .card-num { color: #e91e8c; }
+  .card.dark .card-num { color: #fde68a; }
+
+  .card .card-title {
+    font-size: 16px; font-weight: 700; color: #1a1a2e;
+    margin-bottom: 4px; line-height: 1.4;
+  }
+  .card.dark .card-title { color: white; }
+  .card .card-body { font-size: 13px; color: #555; line-height: 1.5; }
+  .card.dark .card-body { color: #ccc; }
+
+  /* 大きな数字 */
+  .big-number {
+    font-size: 140px; font-weight: 900;
+    color: #f59e0b;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -4px;
+  }
+  .big-unit {
+    font-size: 36px; font-weight: 700;
+    color: #1a1a2e; text-align: center;
+    margin-top: -10px;
+  }
+
+  /* インパクトスライド */
+  .impact-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 100%);
+    border-radius: 20px;
+  }
+  .impact-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100%; text-align: center; gap: 16px;
+  }
+  .impact-label {
+    font-size: 12px; letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.5); text-transform: uppercase;
+  }
+  .impact-main {
+    font-size: 52px; font-weight: 900; color: white;
+    line-height: 1.2;
+  }
+  .impact-main .hl { color: #fde68a; }
+  .impact-sub {
+    font-size: 20px; color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  /* イエロースライド */
+  .yellow-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 20px;
+  }
+  .yellow-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100%; text-align: center; gap: 16px;
+  }
+  .yellow-main {
+    font-size: 56px; font-weight: 900;
+    color: #1a1a2e; line-height: 1.2;
+  }
+  .yellow-badge {
+    background: #1a1a2e;
+    color: #fde68a;
+    font-size: 28px; font-weight: 900;
+    padding: 10px 36px; border-radius: 99px;
+  }
+  .yellow-sub {
+    font-size: 19px; color: #3d2a00; font-weight: 500;
+  }
+
+  /* タイムライン */
+  .timeline { display: flex; align-items: stretch; gap: 0; }
+  .tl-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; position: relative;
+  }
+  .tl-item:not(:last-child)::after {
+    content: '→';
+    position: absolute; right: -12px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px; color: #7c6fcd; font-weight: 900;
+    z-index: 2;
+  }
+  .tl-box {
+    width: 100%; background: #f8f5ff;
+    border-radius: 12px; padding: 14px 10px;
+    text-align: center; border: 1.5px solid #e8e0ff;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .tl-box.dark { background: #1a1a2e; border-color: #1a1a2e; }
+  .tl-icon { font-size: 28px; }
+  .tl-time {
+    font-size: 11px; font-weight: 700; color: #7c6fcd;
+    background: #ede7f6; border-radius: 99px;
+    padding: 2px 8px;
+  }
+  .tl-box.dark .tl-time { color: #fde68a; background: rgba(253,230,138,0.2); }
+  .tl-desc { font-size: 13px; color: #333; font-weight: 600; }
+  .tl-box.dark .tl-desc { color: #ccc; }
+
+  /* バーグラフ */
+  .bar-list { display: flex; flex-direction: column; gap: 8px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { font-size: 13px; color: #555; min-width: 110px; text-align: right; }
+  .bar-track {
+    flex: 1; height: 32px; background: #f0f0f0;
+    border-radius: 8px; overflow: hidden; position: relative;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 8px;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 13px; font-weight: 700; color: #1a1a2e;
+    transition: width 0.6s ease;
+  }
+  .bar-fill.b100 { width:100%; background: linear-gradient(90deg,#fbbf24,#f59e0b); }
+  .bar-fill.b75  { width:75%;  background: linear-gradient(90deg,#fbbf24,#fb923c); }
+  .bar-fill.b50  { width:50%;  background: linear-gradient(90deg,#fb923c,#f97316); }
+  .bar-fill.b25  { width:25%;  background: linear-gradient(90deg,#f97316,#dc2626); }
+
+  /* ワークスライド */
+  .work-number {
+    font-size: 100px; font-weight: 900;
+    color: #ede7f6; line-height: 1;
+    position: absolute; right: 48px; bottom: 20px;
+    font-family: Georgia, serif;
+  }
+  .work-input {
+    flex: 1;
+    border: 2px solid #e8e0ff;
+    border-radius: 12px;
+    background: rgba(124,111,205,0.04);
+    padding: 16px 20px;
+    display: flex; align-items: center;
+  }
+  .work-input-placeholder {
+    font-size: 15px; color: #b0a8d0;
+    border-bottom: 2px dashed #c4b8f0;
+    width: 100%; padding-bottom: 8px;
+  }
+  .work-example {
+    font-size: 13px; color: #b0a8d0; margin-top: 10px;
+  }
+
+  /* 曜日カード */
+  .day-grid { display: flex; gap: 8px; }
+  .day-card {
+    flex: 1; border-radius: 10px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .day-header {
+    background: #1a1a2e; color: white;
+    font-size: 14px; font-weight: 700;
+    text-align: center; padding: 6px;
+  }
+  .day-body {
+    flex: 1; background: #f8f5ff;
+    font-size: 14px; font-weight: 600; color: #2d2d4e;
+    text-align: center; padding: 12px 6px;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1.5;
+    border: 1.5px solid #e8e0ff; border-top: none;
+  }
+  .day-card:nth-child(2) .day-body,
+  .day-card:nth-child(4) .day-body { background: #fffbeb; border-color: #fde68a; }
+
+  /* チェックリスト */
+  .check-list { display: flex; flex-direction: column; gap: 10px; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 17px; color: #2d2d4e; line-height: 1.5;
+  }
+  .check { color: #7c6fcd; font-size: 20px; min-width: 24px; }
+
+  /* ナビゲーション */
+  .nav {
+    position: fixed;
+    bottom: 28px; right: 36px;
+    display: flex; align-items: center; gap: 10px;
+    z-index: 100;
+  }
+  .nav-btn {
+    width: 42px; height: 42px;
+    background: white; border: none;
+    border-radius: 50%; cursor: pointer;
+    font-size: 18px; color: #7c6fcd;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { background: #7c6fcd; color: white; transform: scale(1.08); }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .nav-btn:disabled:hover { background: white; color: #7c6fcd; transform: none; }
+
+  .slide-counter {
+    position: fixed; bottom: 34px; left: 36px;
+    font-size: 13px; color: #999;
+    font-weight: 500; z-index: 100;
+  }
+  .slide-counter span { color: #7c6fcd; font-weight: 700; }
+
+  /* 比較グリッド */
+  .compare-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; flex: 1;
+  }
+  .compare-col {
+    border-radius: 14px; padding: 20px 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .compare-col.a { background: #fffbeb; border: 2px solid #fde68a; }
+  .compare-col.b { background: #f8f8f8; border: 2px solid #e0e0e0; }
+  .compare-letter {
+    font-size: 48px; font-weight: 900;
+    line-height: 1;
+  }
+  .compare-col.a .compare-letter { color: #d97706; }
+  .compare-col.b .compare-letter { color: #aaa; }
+  .compare-title { font-size: 16px; font-weight: 700; color: #1a1a2e; }
+  .compare-col.b .compare-title { color: #999; }
+  .compare-results { display: flex; flex-direction: column; gap: 6px; }
+  .compare-result {
+    font-size: 15px; padding: 6px 10px; border-radius: 6px;
+  }
+  .compare-col.a .compare-result { background: #fef3c7; color: #92400e; }
+  .compare-col.b .compare-result { background: #f0f0f0; color: #999; }
+
+  /* ステップリスト */
+  .step-list { display: flex; flex-direction: column; gap: 10px; }
+  .step-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 16px; border-radius: 10px;
+    background: #f8f5ff; border: 1.5px solid #e8e0ff;
+  }
+  .step-item.yellow { background: #fffbeb; border-color: #fde68a; }
+  .step-num {
+    width: 28px; height: 28px; min-width: 28px;
+    background: #7c6fcd; color: white;
+    border-radius: 50%; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .step-item.yellow .step-num { background: #d97706; }
+  .step-content { flex: 1; }
+  .step-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 3px; }
+  .step-body { font-size: 14px; color: #666; line-height: 1.5; }
+
+  /* トンネルイメージ */
+  .tunnel-box {
+    background: #1a1a2e; border-radius: 12px;
+    padding: 20px; display: flex;
+    align-items: center; justify-content: center;
+    gap: 30px; flex: 1;
+  }
+  .tunnel-wide { text-align: center; }
+  .tunnel-wide .label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+  .tunnel-visual {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tunnel-dot {
+    width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.3);
+  }
+  .tunnel-dot.active { background: #fde68a; }
+  .tunnel-focus {
+    font-size: 22px; font-weight: 900; color: #fde68a;
+  }
+  .tunnel-arrow { font-size: 28px; color: rgba(255,255,255,0.3); }
+
+  /* スマホ対応はしない（プレゼン専用） */
+
+  /* ロールアウトバッジ */
+  .enemy-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(90deg, #7c6fcd, #e91e8c);
+    color: white; border-radius: 99px;
+    padding: 6px 16px 6px 8px;
+    font-size: 14px; font-weight: 700; margin-bottom: 8px;
+  }
+  .enemy-badge .num {
+    background: white; color: #7c6fcd;
+    border-radius: 50%; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+  }
+
+  /* 最終スライド */
+  .offer-box {
+    background: linear-gradient(135deg, #7c6fcd 0%, #e91e8c 100%);
+    border-radius: 14px; padding: 22px 24px;
+    color: white; text-align: center;
+  }
+  .offer-box h3 { font-size: 20px; margin-bottom: 10px; }
+  .offer-box p { font-size: 15px; opacity: 0.9; line-height: 1.7; }
+  .offer-cta {
+    margin-top: 16px;
+    background: #fde68a;
+    color: #1a1a2e;
+    border-radius: 99px;
+    padding: 10px 28px;
+    font-size: 18px; font-weight: 900;
+    display: inline-block;
+  }
+
+  /* アニメーション */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .slide.active { animation: fadeIn 0.35s ease; }
+</style>
+</head>
+<body>
+
+<div class="slide-wrapper">
+
+  <!-- ===== S1: 表紙A 告知用 ===== -->
+  <div class="slide active" style="background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 100%); justify-content:center; align-items:center; text-align:center;">
+    <div style="font-size:14px; font-weight:700; color:#9e86d3; letter-spacing:0.15em; margin-bottom:10px;">7/4（土）21:00〜 START</div>
+    <div style="font-size:18px; color:#6a5acd; font-weight:600; margin-bottom:10px;">ママ美容師の「時間がない！」を手放す</div>
+    <div style="font-size:54px; font-weight:900; color:#1a1a2e; line-height:1.2; margin-bottom:14px;">＼時間革命セミナー／</div>
+    <div style="font-size:17px; color:#5d4a8a; margin-bottom:28px; line-height:1.8;">時間管理を頑張るほど忙しくなる理由。<br>イライラを手放すための「逆転のタイムマネジメント」</div>
+    <div style="display:flex; flex-direction:column; gap:10px; width:560px; margin-bottom:24px;">
+      <div style="background:rgba(124,111,205,0.1); border-left:3px solid #7c6fcd; padding:10px 18px; border-radius:0 8px 8px 0; font-size:16px; color:#2d2d4e; text-align:left;">✅ 疲弊するママ美容師 約80人サポート実績</div>
+      <div style="background:rgba(124,111,205,0.1); border-left:3px solid #7c6fcd; padding:10px 18px; border-radius:0 8px 8px 0; font-size:16px; color:#2d2d4e; text-align:left;">✅ 開業前〜ベテラン経営者まで全て解決</div>
+      <div style="background:rgba(124,111,205,0.1); border-left:3px solid #7c6fcd; padding:10px 18px; border-radius:0 8px 8px 0; font-size:16px; color:#2d2d4e; text-align:left;">✅ 日本で一番楽しくママ美容師をナビゲート</div>
+    </div>
+    <div style="font-size:22px; font-weight:900; color:#1a1a2e;">眞角陽子（マスミヨウコ）</div>
+    <div style="font-size:14px; color:#9e86d3; margin-top:4px;">@youco.kurukuru</div>
+  </div>
+
+  <!-- ===== S2.5: 目次 ===== -->
+  <div class="slide" style="background: #ffffff;">
+    <div class="slide-label">TODAY'S AGENDA</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:3%"></div></div>
+    <div class="slide-title">今日の<span class="accent">セミナーの流れ</span></div>
+    <div class="divider"></div>
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:16px; justify-content:center;">
+
+      <div style="display:flex; align-items:stretch; gap:16px; background:#f8f5ff; border:2px solid #e8e0ff; border-radius:14px; padding:18px 22px;">
+        <div style="min-width:48px; height:48px; background:linear-gradient(135deg,#7c6fcd,#9c8fe0); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:white; flex-shrink:0;">1</div>
+        <div style="display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:20px; font-weight:900; color:#1a1a2e;">時間がない＝<span style="color:#e91e8c;">気のせい</span></div>
+          <div style="font-size:14px; color:#7c6fcd; margin-top:4px;">「なぜ脳がそう感じるのか？」認知リソースの正体</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:stretch; gap:16px; background:#fff0f6; border:2px solid #ffd6e8; border-radius:14px; padding:18px 22px;">
+        <div style="min-width:48px; height:48px; background:linear-gradient(135deg,#e91e8c,#f06292); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:white; flex-shrink:0;">2</div>
+        <div style="display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:20px; font-weight:900; color:#1a1a2e;">充電を奪う<span style="color:#e91e8c;">3つの敵</span></div>
+          <div style="font-size:14px; color:#e91e8c; margin-top:4px;">欠乏マインド・時間汚染・未完了タスク</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:stretch; gap:16px; background:#fffbeb; border:2px solid #fde68a; border-radius:14px; padding:18px 22px;">
+        <div style="min-width:48px; height:48px; background:linear-gradient(135deg,#d97706,#f59e0b); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:white; flex-shrink:0;">3</div>
+        <div style="display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:20px; font-weight:900; color:#1a1a2e;">逆転の<span style="color:#d97706;">タイムマネジメント</span></div>
+          <div style="font-size:14px; color:#d97706; margin-top:4px;">やめる・仕組み化・効率化・回復させる</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:stretch; gap:16px; background:#f0fdf4; border:2px solid #bbf7d0; border-radius:14px; padding:18px 22px;">
+        <div style="min-width:48px; height:48px; background:linear-gradient(135deg,#16a34a,#4ade80); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:white; flex-shrink:0;">4</div>
+        <div style="display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:20px; font-weight:900; color:#1a1a2e;">ワーク：<span style="color:#16a34a;">今日決めて帰る</span></div>
+          <div style="font-size:14px; color:#16a34a; margin-top:4px;">明日から変わる3つのアクション</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== S3: 悩みランキング ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 01</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:8%"></div></div>
+    <div class="slide-title">受講生さんに聞いた<span class="accent">「今一番の悩み」</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="background:linear-gradient(90deg,#7c6fcd,#e91e8c); border-radius:14px; padding:20px 28px; display:flex; align-items:center; gap:20px;">
+        <div style="font-size:48px; font-weight:900; color:white; line-height:1;">第1位</div>
+        <div style="font-size:36px; font-weight:900; color:white;">時間がない！</div>
+      </div>
+      <div class="q-item" style="border-left-color:#e91e8c;">
+        <div class="q-label" style="color:#e91e8c;">・</div>
+        <div class="q-text">やりたいことはあるのに、進められない</div>
+      </div>
+      <div class="q-item" style="border-left-color:#e91e8c;">
+        <div class="q-label" style="color:#e91e8c;">・</div>
+        <div class="q-text">焦ってしまって、動けない</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S4: あなただけじゃない ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 02</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
+    <div class="slide-title">わかる…<span class="accent">これ、私もそうだった</span></div>
+    <div class="divider"></div>
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:12px;">
+
+      <!-- 写真タイムライン -->
+      <div style="display:flex; gap:6px; align-items:flex-end;">
+
+        <!-- 朝 -->
+        <div style="flex:1; display:flex; flex-direction:column; border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,0.12);">
+          <div style="background:#f9f9f9; display:flex; align-items:center; justify-content:center; height:150px;">
+            <img src="./s6-morning.png" alt="朝の家" style="width:100%; height:150px; object-fit:contain; display:block;">
+          </div>
+          <div style="background:#fff8e1; padding:8px 10px; border-top:3px solid #f59e0b;">
+            <div style="font-size:10px; font-weight:700; color:#d97706; margin-bottom:1px;">🌅 朝</div>
+            <div style="font-size:12px; font-weight:800; color:#1a1a2e; line-height:1.3;">子育て＋家事<br>バタバタ</div>
+          </div>
+        </div>
+
+        <!-- 矢印 -->
+        <div style="flex-shrink:0; font-size:18px; color:#ccc; padding-bottom:52px;">→</div>
+
+        <!-- 昼サロン -->
+        <div style="flex:1; display:flex; flex-direction:column; border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,0.12);">
+          <div style="background:#f9f9f9; display:flex; align-items:center; justify-content:center; height:150px;">
+            <img src="./s6-salon.png" alt="サロンワーク" style="width:100%; height:150px; object-fit:contain; display:block;">
+          </div>
+          <div style="background:#f0f4ff; padding:8px 10px; border-top:3px solid #7c6fcd;">
+            <div style="font-size:10px; font-weight:700; color:#7c6fcd; margin-bottom:1px;">✂️ 日中</div>
+            <div style="font-size:12px; font-weight:800; color:#1a1a2e; line-height:1.3;">サロンワーク<br>全力で</div>
+          </div>
+        </div>
+
+        <!-- 矢印 -->
+        <div style="flex-shrink:0; font-size:18px; color:#ccc; padding-bottom:52px;">→</div>
+
+        <!-- お迎え -->
+        <div style="flex:1; display:flex; flex-direction:column; border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,0.12);">
+          <div style="background:#f9f9f9; display:flex; align-items:center; justify-content:center; height:150px;">
+            <img src="./s6-pickup.png" alt="保育園お迎え" style="width:100%; height:150px; object-fit:contain; display:block;">
+          </div>
+          <div style="background:#f0fdf4; padding:8px 10px; border-top:3px solid #4ade80;">
+            <div style="font-size:10px; font-weight:700; color:#16a34a; margin-bottom:1px;">🚌 夕方</div>
+            <div style="font-size:12px; font-weight:800; color:#1a1a2e; line-height:1.3;">保育園<br>お迎え</div>
+          </div>
+        </div>
+
+        <!-- 矢印 -->
+        <div style="flex-shrink:0; font-size:18px; color:#ccc; padding-bottom:52px;">→</div>
+
+        <!-- ご飯 -->
+        <div style="flex:1; display:flex; flex-direction:column; border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,0.12);">
+          <div style="background:#f9f9f9; display:flex; align-items:center; justify-content:center; height:150px;">
+            <img src="./s6-dinner.png" alt="ご飯" style="width:100%; height:150px; object-fit:contain; display:block;">
+          </div>
+          <div style="background:#fff0f6; padding:8px 10px; border-top:3px solid #e91e8c;">
+            <div style="font-size:10px; font-weight:700; color:#e91e8c; margin-bottom:1px;">🍳 夜</div>
+            <div style="font-size:12px; font-weight:800; color:#1a1a2e; line-height:1.3;">ご飯・お風呂<br>寝かしつけ</div>
+          </div>
+        </div>
+
+        <!-- 矢印 -->
+        <div style="flex-shrink:0; font-size:18px; color:#ccc; padding-bottom:52px;">→</div>
+
+        <!-- 寝落ち -->
+        <div style="flex:1; display:flex; flex-direction:column; border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,0.15);">
+          <div style="background:#2a2a3e; display:flex; align-items:center; justify-content:center; height:150px;">
+            <img src="./s6-sleep.png" alt="寝落ち" style="width:100%; height:150px; object-fit:contain; display:block; filter:brightness(0.9);">
+          </div>
+          <div style="background:#1a1a2e; padding:8px 10px; border-top:3px solid #fde68a;">
+            <div style="font-size:10px; font-weight:700; color:#fde68a; margin-bottom:1px;">😴 夜22時</div>
+            <div style="font-size:12px; font-weight:800; color:white; line-height:1.3;">一人の時間<br>→ 寝落ち</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- まとめ -->
+      <div style="text-align:center; color:#999; font-size:23px; margin-top:4px;">また<span style="color:#e91e8c; font-weight:700;">「何もできなかった…」</span>を繰り返す</div>
+
+    </div>
+  </div>
+
+  <!-- ===== S5: 問いかけ インパクト ===== -->
+  <div class="slide" style="padding:0;">
+    <div class="impact-bg" style="background:linear-gradient(135deg,#0d0d1a 0%,#1a0a2e 100%);"></div>
+    <div class="impact-content">
+      <div class="impact-label">QUESTION</div>
+      <div class="impact-main" style="font-size:36px; color:rgba(255,255,255,0.6);">ちょっと待って。</div>
+      <div class="impact-main" style="font-size:64px; line-height:1.1;">
+        時間って、<br><span class="hl">本当にないの？</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S6: 24時間 ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 03</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:21%"></div></div>
+    <div class="slide-title">1日は、<span class="yellow">全員24時間</span></div>
+    <div class="divider"></div>
+    <div class="content" style="align-items:center; justify-content:center;">
+      <div class="big-number">24</div>
+      <div class="big-unit">時間</div>
+      <div style="margin-top:16px; text-align:center; color:#666; font-size:23px; line-height:1.9;">
+        旅行の日も　／　バタバタの日も<br>
+        サロンが満席の日も<br>
+        <strong style="font-size:25px; color:#1a1a2e;">全員、24時間</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S7: 気のせい ===== -->
+  <div class="slide" style="padding:0;">
+    <div class="yellow-bg"></div>
+    <div class="yellow-content">
+      <div style="font-size:30px; font-weight:700; color:#3d2a00;">時間がないは</div>
+      <div class="yellow-badge">「気のせい」</div>
+      <div class="yellow-sub">正確には――</div>
+      <div style="font-size:30px; font-weight:900; color:#1a1a2e;">認知リソース（考える余裕）が足りていない</div>
+    </div>
+  </div>
+
+  <!-- ===== S8: 認知リソース・脳の充電 ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 04</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+    <div class="slide-title">認知リソース＝<span class="accent">脳の充電</span></div>
+    <div class="slide-sub">スマホのバッテリーと同じ</div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="display:flex; gap:20px; flex:1;">
+        <div style="flex:1; display:flex; flex-direction:column; gap:10px;">
+          <div style="background:#1a1a2e; border-radius:14px; padding:20px; text-align:center; color:white;">
+            <div style="font-size:48px; margin-bottom:8px;">🔋</div>
+            <div style="font-size:23px; font-weight:700; color:#fde68a;">朝起きたとき → 100%</div>
+            <div style="font-size:23px; color:#aaa; margin-top:6px;">フル充電の状態でスタート</div>
+          </div>
+          <div style="background:#f8f5ff; border-radius:14px; padding:16px; text-align:center; border:1.5px solid #e8e0ff;">
+            <div style="font-size:48px; margin-bottom:4px;">📱</div>
+            <div style="font-size:23px; color:#7c6fcd; font-weight:600;">充電をどう使うかが<br>「時間がある感覚」の正体</div>
+          </div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:10px;">
+          <div class="q-item">
+            <div class="q-label">→</div>
+            <div class="q-text">充電を<strong>無駄づかいしない</strong>と、時間は生まれる</div>
+          </div>
+          <div class="q-item">
+            <div class="q-label">→</div>
+            <div class="q-text">充電を<strong>奪うもの</strong>を知れば、対処できる</div>
+          </div>
+          <div style="background:linear-gradient(90deg,#7c6fcd,#e91e8c); border-radius:10px; padding:14px 16px; color:white; font-size:23px; font-weight:700;">
+            今日は「充電泥棒」を3つ暴きます
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S9: 比較 ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 05</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:34%"></div></div>
+    <div class="slide-title">同じ10時間でも…</div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="compare-grid">
+        <div class="compare-col a">
+          <div class="compare-letter">A</div>
+          <div class="compare-title">集中して作業した10時間</div>
+          <div class="compare-results">
+            <div class="compare-result">✨ 充実感 ◎</div>
+            <div class="compare-result">🎯 成果 ◎</div>
+            <div class="compare-result">⚡ 充電を上手に使えた</div>
+          </div>
+        </div>
+        <div class="compare-col b">
+          <div class="compare-letter">B</div>
+          <div class="compare-title">あれもこれも頭によぎりながらの10時間</div>
+          <div class="compare-results">
+            <div class="compare-result">😞 充実感 ✕</div>
+            <div class="compare-result">😰 成果 ✕</div>
+            <div class="compare-result">🪫 充電が気づかぬうちに消耗</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; font-size:23px; color:#666; margin-top:8px;">
+        充実感も、成果も、<strong style="color:#1a1a2e;">全然違う</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S10: 充電泥棒① ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 06</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:38%"></div></div>
+    <div class="slide-title">脳の充電を奪う<span class="accent">3つの敵</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="enemy-badge"><span class="num">1</span>充電泥棒①　欠乏マインド</div>
+      <div style="font-size:23px; color:#555; margin-bottom:8px; font-weight:600;">焦りモード・足りない不安</div>
+      <div class="tunnel-box" style="flex:1; background:#ede7f6;">
+        <div class="tunnel-wide">
+          <div class="label" style="color:#5d4a8a;">足りないと感じる前</div>
+          <div class="tunnel-visual">
+            <div class="tunnel-dot active" style="background:#7c6fcd;"></div>
+            <div class="tunnel-dot active" style="background:#7c6fcd;"></div>
+            <div class="tunnel-dot active" style="background:#7c6fcd;"></div>
+            <div class="tunnel-dot active" style="background:#7c6fcd;"></div>
+            <div class="tunnel-dot active" style="background:#7c6fcd;"></div>
+          </div>
+          <div style="font-size:23px; color:#5d4a8a; margin-top:6px;">視野が広い</div>
+        </div>
+        <div class="tunnel-arrow" style="color:#7c6fcd;">→</div>
+        <div style="text-align:center;">
+          <div class="label" style="color:#5d4a8a;">「時間がない！」と感じると…</div>
+          <div class="tunnel-focus" style="color:#e91e8c;">トンネル現象</div>
+          <div style="font-size:23px; color:#5d4a8a; margin-top:6px;">足りないものしか見えなくなる</div>
+        </div>
+        <div class="tunnel-arrow" style="color:#7c6fcd;">→</div>
+        <div class="tunnel-wide">
+          <div class="label" style="color:#5d4a8a;">結果</div>
+          <div class="tunnel-visual">
+            <div class="tunnel-dot" style="background:#c9bce8;"></div>
+            <div class="tunnel-dot" style="background:#c9bce8;"></div>
+            <div class="tunnel-dot active" style="background:#7c6fcd;"></div>
+            <div class="tunnel-dot" style="background:#c9bce8;"></div>
+            <div class="tunnel-dot" style="background:#c9bce8;"></div>
+          </div>
+          <div style="font-size:23px; color:#e91e8c; font-weight:700; margin-top:6px;">もっと時間がなくなる</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S11: トンネル現象（写真版） ===== -->
+  <div class="slide" style="background:#ffffff;">
+    <div class="slide-label">SEMINAR 07</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:41%"></div></div>
+    <div class="slide-title">「時間がない！」と感じると…<span class="accent">トンネル現象</span></div>
+    <div class="divider"></div>
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:12px;">
+
+      <!-- 3カラム写真 -->
+      <div style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:0; flex:1; align-items:stretch;">
+
+        <!-- カード1: ビフォー（大地） -->
+        <div style="display:flex; flex-direction:column; border-radius:14px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,0.10);">
+          <div style="position:relative; flex:1; overflow:hidden; min-height:180px;">
+            <img src="./slide-before.png"
+                 alt="広い大地" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div style="position:absolute; top:10px; left:10px; background:rgba(124,111,205,0.9); color:white; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:0.06em;">BEFORE</div>
+          </div>
+          <div style="background:#f8f5ff; padding:14px 16px; border:2px solid #e8e0ff; border-top:none; border-radius:0 0 14px 14px;">
+            <div style="font-size:15px; font-weight:800; color:#5d4a8a; margin-bottom:4px;">👁 視野が広い</div>
+            <div style="font-size:13px; color:#7c6fcd; line-height:1.6;">「足りない」と感じていない状態。<br>可能性が広く見えている。</div>
+          </div>
+        </div>
+
+        <!-- 矢印1 -->
+        <div style="display:flex; align-items:center; justify-content:center; padding:0 12px; flex-direction:column; gap:4px;">
+          <div style="font-size:26px; color:#e91e8c;">→</div>
+          <div style="font-size:10px; color:#e91e8c; font-weight:700; white-space:nowrap;">時間がない！</div>
+        </div>
+
+        <!-- カード2: トンネル -->
+        <div style="display:flex; flex-direction:column; border-radius:14px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,0.15);">
+          <div style="position:relative; flex:1; overflow:hidden; min-height:180px;">
+            <img src="./slide-tunnel.png"
+                 alt="トンネル" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div style="position:absolute; top:10px; left:10px; background:rgba(233,30,140,0.9); color:white; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:0.06em;">TUNNEL</div>
+          </div>
+          <div style="background:#fff0f6; padding:14px 16px; border:2px solid #ffd6e8; border-top:none; border-radius:0 0 14px 14px;">
+            <div style="font-size:15px; font-weight:800; color:#c2185b; margin-bottom:4px;">🚇 トンネル現象</div>
+            <div style="font-size:13px; color:#e91e8c; line-height:1.6;">「足りないもの」しか見えなくなる。<br>選択肢が急激に狭まる。</div>
+          </div>
+        </div>
+
+        <!-- 矢印2 -->
+        <div style="display:flex; align-items:center; justify-content:center; padding:0 12px; flex-direction:column; gap:4px;">
+          <div style="font-size:26px; color:#1a1a2e;">→</div>
+          <div style="font-size:10px; color:#666; font-weight:700; white-space:nowrap;">その結果…</div>
+        </div>
+
+        <!-- カード3: アフター（出口） -->
+        <div style="display:flex; flex-direction:column; border-radius:14px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,0.15);">
+          <div style="position:relative; flex:1; overflow:hidden; min-height:180px;">
+            <img src="./slide-after.png"
+                 alt="洞窟の穴から見える景色" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
+            <div style="position:absolute; top:10px; left:10px; background:rgba(26,26,46,0.9); color:#fde68a; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:0.06em;">AFTER</div>
+          </div>
+          <div style="background:#1a1a2e; padding:14px 16px; border:2px solid #333; border-top:none; border-radius:0 0 14px 14px;">
+            <div style="font-size:15px; font-weight:800; color:#fde68a; margin-bottom:4px;">⚠️ もっと時間がなくなる</div>
+            <div style="font-size:13px; color:#aaa; line-height:1.6;">判断力が低下し、大事なことを後回しに。<br>悪循環が加速していく。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- まとめ一行 -->
+      <div style="background:linear-gradient(90deg,#7c6fcd,#e91e8c); border-radius:10px; padding:10px 22px; text-align:center; color:white; font-size:14px; font-weight:700;">
+        「時間がない」という感覚が、さらに「時間がない」を生み出している
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== S12: ハーバード IQ13 ===== -->
+  <div class="slide" style="padding:0;">
+    <div class="impact-bg"></div>
+    <div class="impact-content">
+      <div class="impact-label">Harvard Research</div>
+      <div class="impact-main" style="font-size:24px; color:rgba(255,255,255,0.7);">これ、ハーバード大学が証明してます</div>
+      <div class="impact-sub">「足りない」と感じるだけで<br>人間の判断力は</div>
+      <div style="display:flex; align-items:baseline; gap:8px; justify-content:center;">
+        <div style="font-size:44px; font-weight:900; color:white;">IQ</div>
+        <div style="font-size:120px; font-weight:900; color:#fde68a; line-height:1;">13</div>
+        <div style="font-size:32px; font-weight:900; color:white;">ポイント<br>下がる</div>
+      </div>
+      <div style="font-size:13px; color:rgba(255,255,255,0.4);">出典：センディル・ムッライナタン（ハーバード大学）</div>
+    </div>
+  </div>
+
+  <!-- ===== S13: 充電泥棒② 時間汚染 ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 08</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+    <div class="slide-title">脳の充電を奪う<span class="accent">3つの敵</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="enemy-badge"><span class="num">2</span>充電泥棒②　時間汚染</div>
+      <div style="font-size:23px; color:#555; margin-bottom:10px; font-weight:600;">頭の二股 ─ 体はここ、頭は別のところ</div>
+      <div style="display:flex; gap:12px; flex:1;">
+        <div style="flex:1; background:#f8f5ff; border-radius:12px; padding:18px; border:1.5px solid #e8e0ff; display:flex; flex-direction:column; gap:8px;">
+          <div style="font-size:23px; color:#7c6fcd; font-weight:700;">お客様への返信を書いている途中に…</div>
+          <div style="font-size:28px; text-align:center; padding:16px 0;">📲</div>
+        </div>
+        <div style="display:flex; align-items:center; font-size:28px; color:#7c6fcd; font-weight:900;">→</div>
+        <div style="flex:1; background:#fce4ec; border-radius:12px; padding:18px; border:1.5px solid #f8bbd0; display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center;">
+          <div style="font-size:32px; font-weight:900; color:#e91e8c;">「ママ〜！」</div>
+          <div style="font-size:23px; color:#555; text-align:center;">と呼ばれて子供の世話</div>
+        </div>
+        <div style="display:flex; align-items:center; font-size:28px; color:#7c6fcd; font-weight:900;">→</div>
+        <div style="flex:1; background:#1a1a2e; border-radius:12px; padding:18px; border:1.5px solid #333; display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center;">
+          <div style="font-size:23px; color:#aaa; text-align:center;">戻ったとき…</div>
+          <div style="font-size:23px; font-weight:700; color:#fde68a; text-align:center;">「……何書いてたっけ？」</div>
+        </div>
+      </div>
+      <div style="text-align:center; font-size:23px; color:#666;">切り替えのたびに充電が消耗する</div>
+    </div>
+  </div>
+
+  <!-- ===== S14: 充電泥棒③ 未完了タスク ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 09</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:48%"></div></div>
+    <div class="slide-title">脳の充電を奪う<span class="accent">3つの敵</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="enemy-badge"><span class="num">3</span>充電泥棒③　未完了タスク</div>
+      <div style="font-size:23px; color:#555; margin-bottom:10px;">やり残しが頭を占領する</div>
+      <div style="display:flex; gap:16px; flex:1; align-items:center;">
+        <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+          <div style="font-size:23px; color:#666; margin-bottom:4px;">夜ご飯の片付け中に洗濯機が鳴る…</div>
+          <div class="card yellow" style="font-size:14px; padding:10px 14px;">🧺 洗濯物</div>
+          <div class="card yellow" style="font-size:14px; padding:10px 14px;">🛁 お風呂</div>
+          <div class="card yellow" style="font-size:14px; padding:10px 14px;">📋 明日の準備</div>
+          <div class="card yellow" style="font-size:14px; padding:10px 14px;">📱 LINE返信</div>
+        </div>
+        <div style="font-size:48px; color:#7c6fcd; font-weight:900;">🔄</div>
+        <div style="flex:1; background:#1a1a2e; border-radius:14px; padding:20px; display:flex; flex-direction:column; gap:12px; align-items:center;">
+          <div style="font-size:23px; color:#aaa; text-align:center;">やってない間も<br>頭でずっと回り続ける</div>
+          <div style="font-size:23px; font-weight:900; color:#fde68a; text-align:center;">→ 充電が<br>勝手に減っていく</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S15: まとめ 1時間→15分 ===== -->
+  <div class="slide">
+    <div class="slide-label">SEMINAR 10</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:52%"></div></div>
+    <div class="slide-title">1時間あっても、<span class="accent">使えてるのは15分</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="bar-list" style="flex:1; justify-content:center;">
+        <div class="bar-row">
+          <div class="bar-label">スタート</div>
+          <div class="bar-track"><div class="bar-fill b100">1時間</div></div>
+        </div>
+        <div style="padding:4px 0; display:flex; align-items:center; gap:8px; padding-left:122px;">
+          <div style="font-size:12px; color:#e91e8c; font-weight:600;">▼ 欠乏マインド</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">欠乏マインド後</div>
+          <div class="bar-track"><div class="bar-fill b75">45分</div></div>
+        </div>
+        <div style="padding:4px 0; display:flex; align-items:center; gap:8px; padding-left:122px;">
+          <div style="font-size:12px; color:#e91e8c; font-weight:600;">▼ 時間汚染</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">時間汚染後</div>
+          <div class="bar-track"><div class="bar-fill b50">30分</div></div>
+        </div>
+        <div style="padding:4px 0; display:flex; align-items:center; gap:8px; padding-left:122px;">
+          <div style="font-size:12px; color:#e91e8c; font-weight:600;">▼ 未完了タスク</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">未完了タスク後</div>
+          <div class="bar-track"><div class="bar-fill b25">15分</div></div>
+        </div>
+      </div>
+      <div style="background:#1a1a2e; border-radius:10px; padding:14px; text-align:center; font-size:20px; font-weight:900; color:#fde68a; margin-top:10px;">
+        残り：実質15分
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S16: 解決策 全体像 ===== -->
+  <div class="slide">
+    <div class="slide-label">SOLUTION</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+    <div class="slide-title">逆転のタイムマネジメント</div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="card-grid col2" style="flex:1;">
+        <div class="card yellow" style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="card-num">①</div>
+          <div><div class="card-title">やめる・手放す</div><div class="card-body">選択を減らし、脳の充電を守る</div></div>
+        </div>
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="card-num">②</div>
+          <div><div class="card-title">仕組み化する</div><div class="card-body">自分以外がやれるルールを作る</div></div>
+        </div>
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="card-num">③</div>
+          <div><div class="card-title">効率化する</div><div class="card-body">同じ種類の作業をまとめてやる</div></div>
+        </div>
+        <div class="card yellow" style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="card-num">④</div>
+          <div><div class="card-title">回復させる</div><div class="card-body">完璧主義をやめて充電を補充する</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S17: ①記憶を外に出す ===== -->
+  <div class="slide">
+    <div class="slide-label">STEP ① やめる・手放す</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:59%"></div></div>
+    <div class="slide-title">記憶を、<span class="accent">外に出す</span></div>
+    <div class="slide-sub">頭の中に持ち続けない</div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="display:flex; gap:14px; align-items:center; flex:1;">
+        <div style="flex:1; background:#1a1a2e; border-radius:14px; padding:22px; text-align:center;">
+          <div style="font-size:36px; margin-bottom:8px;">🧠</div>
+          <div style="font-size:23px; font-weight:700; color:#aaa;">頭の中</div>
+          <div style="font-size:23px; color:#888; margin-top:6px;">パンパン…</div>
+        </div>
+        <div style="font-size:36px; color:#7c6fcd; font-weight:900;">→</div>
+        <div style="flex:1; background:#fffbeb; border-radius:14px; padding:22px; text-align:center; border:2px solid #fde68a;">
+          <div style="font-size:36px; margin-bottom:8px;">📓</div>
+          <div style="font-size:23px; font-weight:700; color:#d97706;">メモに出す</div>
+          <div style="font-size:23px; color:#888; margin-top:6px;">ノート・スマホ何でもOK</div>
+        </div>
+        <div style="font-size:36px; color:#7c6fcd; font-weight:900;">→</div>
+        <div style="flex:1; background:#f0fdf4; border-radius:14px; padding:22px; text-align:center; border:2px solid #bbf7d0;">
+          <div style="font-size:36px; margin-bottom:8px;">✨</div>
+          <div style="font-size:23px; font-weight:700; color:#166534;">脳がすっきり！</div>
+          <div style="font-size:23px; color:#888; margin-top:6px;">認知リソースが開放される</div>
+        </div>
+      </div>
+      <div class="q-item" style="border-left-color:#7c6fcd;">
+        <div class="q-label">→</div>
+        <div class="q-text">気になること・未完了は<strong>全部メモに出す</strong>。書いた瞬間、未完了ではなくなる</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S18: ①ルールを決めて考えない ===== -->
+  <div class="slide">
+    <div class="slide-label">STEP ① やめる・手放す（続き）</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+    <div class="slide-title">ルールを決めて、<span class="accent">考えない</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="step-list" style="flex:1;">
+        <div class="step-item yellow">
+          <div class="step-num" style="background:#d97706;">💡</div>
+          <div class="step-content">
+            <div class="step-title">例：朝ごはんを固定する</div>
+            <div class="step-body">「ご飯・味噌汁・納豆」に決める。子どもに何パターンか聞いて固定。<br><strong>→ 毎朝「何にする？」から解放される</strong></div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✅</div>
+          <div class="step-content">
+            <div class="step-title">タスクを絞る</div>
+            <div class="step-body">家事育児より先に「公式LINEの発信」から始める。<strong>自分の仕事を一番先に入れる</strong></div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✅</div>
+          <div class="step-content">
+            <div class="step-title">家事を減らす</div>
+            <div class="step-body">定期購入を使う。スーパーに何回も行かない。<br><strong>→ 選択する回数を減らすと、集中できる</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S19: ①絞る ===== -->
+  <div class="slide">
+    <div class="slide-label">STEP ① 絞る</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+    <div class="slide-title">自分の仕事を<span class="accent">一番先に入れる</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="display:flex; gap:16px; flex:1; align-items:center;">
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:23px; color:#999; margin-bottom:8px;">今まで</div>
+          <div class="step-list">
+            <div class="step-item" style="border-color:#fbb6ce; background:#fff0f6;">
+              <div class="step-num" style="background:#e91e8c;">1</div>
+              <div class="step-content"><div class="step-title">家事・育児</div></div>
+            </div>
+            <div class="step-item" style="border-color:#fbb6ce; background:#fff0f6;">
+              <div class="step-num" style="background:#e91e8c;">2</div>
+              <div class="step-content"><div class="step-title">サロンワーク</div></div>
+            </div>
+            <div class="step-item" style="border-color:#fbb6ce; background:#fff0f6;">
+              <div class="step-num" style="background:#e91e8c;">3</div>
+              <div class="step-content"><div class="step-title" style="color:#aaa;">自分の発信…（残れば）</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:44px; color:#7c6fcd; font-weight:900;">⇒</div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:23px; color:#7c6fcd; font-weight:700; margin-bottom:8px;">これからは</div>
+          <div class="step-list">
+            <div class="step-item yellow">
+              <div class="step-num" style="background:#d97706;">1</div>
+              <div class="step-content"><div class="step-title">公式LINEの発信</div></div>
+            </div>
+            <div class="step-item yellow">
+              <div class="step-num" style="background:#d97706;">2</div>
+              <div class="step-content"><div class="step-title">サロンワーク</div></div>
+            </div>
+            <div class="step-item yellow">
+              <div class="step-num" style="background:#d97706;">3</div>
+              <div class="step-content"><div class="step-title">家事・育児</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S20: ②仕組み化 ===== -->
+  <div class="slide">
+    <div class="slide-label">STEP ② 仕組み化する</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:69%"></div></div>
+    <div class="slide-title">自分がいなくても<span class="accent">回るルール</span>を作る</div>
+    <div class="divider"></div>
+    <div class="content">
+      <div class="step-list" style="flex:1;">
+        <div class="step-item yellow">
+          <div class="step-num" style="background:#d97706;">✅</div>
+          <div class="step-content">
+            <div class="step-title">予約の仕組み化</div>
+            <div class="step-body">年間でもらい、常連様を固定枠に。変更時はヘッドスパをサービス等<br>→ お客様も嬉しい・自分も子供の参観日に慌てない</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✅</div>
+          <div class="step-content">
+            <div class="step-title">新規LINEはテンプレを何パターンか用意</div>
+            <div class="step-body">→ 毎回ゼロから考えない</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✅</div>
+          <div class="step-content">
+            <div class="step-title">役割分担の明確化</div>
+            <div class="step-body">夜ご飯・食べさせるまでママ／片付けからパパ<br>→ 帰宅後2時間で寝かしつけまで完了</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S21: ②家庭編 ===== -->
+  <div class="slide">
+    <div class="slide-label">STEP ② 仕組み化（家庭編）</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+    <div class="slide-title">家事も、役割分担も、<span class="accent">仕組みに</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="flex:1; display:flex; gap:16px; align-items:stretch;">
+        <!-- 左：画像 -->
+        <div style="flex:0 0 42%; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.12);">
+          <img src="./s23-prep.png" alt="学校の持ち物準備" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <!-- 右：全テキスト -->
+        <div style="flex:1; display:flex; flex-direction:column; gap:12px; justify-content:center;">
+          <div class="card yellow" style="margin:0;">
+            <div style="font-size:23px; font-weight:700; color:#d97706; margin-bottom:8px;">👩 ママ担当</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">夜ご飯・食べさせるまで</div>
+            <div style="font-size:23px; color:#666; margin-top:6px;">ここで完結、以降は手放す</div>
+          </div>
+          <div class="card" style="margin:0;">
+            <div style="font-size:23px; font-weight:700; color:#7c6fcd; margin-bottom:8px;">👨 パパ担当</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">片付けから</div>
+            <div style="font-size:23px; color:#666; margin-top:6px;">帰宅後ルーティン固定で完結</div>
+          </div>
+          <div class="card" style="margin:0;">
+            <div style="font-size:23px; font-weight:700; color:#7c6fcd; margin-bottom:8px;">📸 仕組み化のコツ</div>
+            <div style="font-size:23px; color:#1a1a2e; line-height:1.6;">学校の持ち物準備を<strong>番号付き写真でプリント化</strong><br>→ 夫・子どもが見ればわかる状態にする</div>
+            <div style="font-size:23px; color:#1a1a2e; line-height:1.6; margin-top:6px;">「自分がやった方が早い」<br><strong>こだわりを捨てる</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S22: 夫婦の本音 ===== -->
+  <div class="slide">
+    <div class="slide-label">HONEST TALK</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:76%"></div></div>
+    <div class="slide-title">夫はやらないんじゃない、<span class="accent">知らないだけ</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="display:flex; gap:14px; flex:1; align-items:stretch;">
+        <div style="flex:1; display:flex; flex-direction:column; gap:10px; justify-content:center;">
+          <div class="card" style="text-align:center;">
+            <div style="font-size:28px; margin-bottom:6px;">👫</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">結婚当初</div>
+            <div style="font-size:23px; color:#666;">夫婦、同じスタートだった</div>
+          </div>
+          <div style="text-align:center; font-size:23px; color:#7c6fcd; font-weight:900;">↓</div>
+          <div class="card yellow" style="text-align:center;">
+            <div style="font-size:28px; margin-bottom:6px;">✨</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">妻だけレベルアップ！</div>
+            <div style="font-size:23px; color:#666;">教えてない自分のせいでもある</div>
+          </div>
+        </div>
+        <div style="flex:2; display:flex; flex-direction:column; justify-content:center; gap:12px;">
+          <div class="q-item">
+            <div class="q-label">💡</div>
+            <div class="q-text">なのに妻だけが先に進んでいった</div>
+          </div>
+          <div class="q-item">
+            <div class="q-label">→</div>
+            <div class="q-text"><strong>教えてない自分のせいでもある</strong></div>
+          </div>
+          <div style="background:#1a1a2e; border-radius:10px; padding:16px; color:#fde68a; font-size:23px; font-weight:700;">
+            仕組みを作って「知らせる」のが最初の一歩
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S23: ③効率化 バッチ処理 ===== -->
+  <div class="slide">
+    <div class="slide-label">STEP ③ 効率化する</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:79%"></div></div>
+    <div class="slide-title">バッチ処理で<span class="accent">脳の充電を守る</span></div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="font-size:23px; color:#666; margin-bottom:10px;">✅ 同じ種類の作業をまとめてやる</div>
+      <div class="day-grid" style="flex:1;">
+        <div class="day-card"><div class="day-header">月</div><div class="day-body">リサーチ<br>台本作り</div></div>
+        <div class="day-card"><div class="day-header">火</div><div class="day-body">動画<br>撮影</div></div>
+        <div class="day-card"><div class="day-header">水</div><div class="day-body">動画<br>編集</div></div>
+        <div class="day-card"><div class="day-header">木</div><div class="day-body">LINE<br>配信</div></div>
+        <div class="day-card"><div class="day-header">金</div><div class="day-body">自分<br>メンテ</div></div>
+      </div>
+      <div class="q-item" style="margin-top:10px;">
+        <div class="q-label">→</div>
+        <div class="q-text">切り替えのたびに充電が減る。<strong>まとめると守られる</strong></div>
+      </div>
+      <div class="q-item">
+        <div class="q-label">✅</div>
+        <div class="q-text">決めたことをやる日に、他の人のSNSを見ない</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S25: 今日決めて帰る ===== -->
+  <div class="slide">
+    <div class="slide-label">TODAY'S ACTION</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:83%"></div></div>
+    <div class="slide-title">セミナーを<span class="accent">「いいこと聞いた」で終わらせない</span></div>
+    <div class="divider"></div>
+    <div class="content" style="justify-content:center; gap:14px;">
+      <div class="step-item yellow" style="padding:18px 24px;">
+        <div class="step-num" style="background:#d97706; width:36px; height:36px; font-size:18px;">①</div>
+        <div class="step-content"><div class="step-title" style="font-size:20px;">何をやめる？</div></div>
+      </div>
+      <div class="step-item" style="padding:18px 24px;">
+        <div class="step-num" style="width:36px; height:36px; font-size:18px;">②</div>
+        <div class="step-content"><div class="step-title" style="font-size:20px;">何を仕組み化する？</div></div>
+      </div>
+      <div class="step-item" style="padding:18px 24px;">
+        <div class="step-num" style="width:36px; height:36px; font-size:18px;">③</div>
+        <div class="step-content"><div class="step-title" style="font-size:20px;">何を効率化する？</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S25.5: 手放す・やめること 5つ ===== -->
+  <div class="slide" style="background:#ffffff;">
+    <div class="slide-label">TIPS</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:84%"></div></div>
+    <div class="slide-title"><span class="accent">手放す・やめること</span>の具体例</div>
+    <div class="divider"></div>
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:9px;">
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#f8f5ff; border-left:4px solid #7c6fcd; border-radius:0 10px 10px 0; padding:11px 16px;">
+        <div style="min-width:32px; height:32px; background:#7c6fcd; color:white; border-radius:50%; font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0;">①</div>
+        <div>
+          <div style="font-size:17px; font-weight:900; color:#1a1a2e;">記憶を手放す（外部化）</div>
+          <div style="font-size:13px; color:#666; margin-top:3px; line-height:1.5;">未完了タスクや気になることをメモ帳やスマホに書き出して、一時的に忘れる</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#fff8e1; border-left:4px solid #f59e0b; border-radius:0 10px 10px 0; padding:11px 16px;">
+        <div style="min-width:32px; height:32px; background:#f59e0b; color:white; border-radius:50%; font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0;">②</div>
+        <div>
+          <div style="font-size:17px; font-weight:900; color:#1a1a2e;">ルールを決めて考えない</div>
+          <div style="font-size:13px; color:#666; margin-top:3px; line-height:1.5;">「〇〇が来たら△△する」というルールを作る。ご飯の献立や服装など</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#f0fdf4; border-left:4px solid #4ade80; border-radius:0 10px 10px 0; padding:11px 16px;">
+        <div style="min-width:32px; height:32px; background:#4ade80; color:white; border-radius:50%; font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0;">③</div>
+        <div>
+          <div style="font-size:17px; font-weight:900; color:#1a1a2e;">選択肢を減らす</div>
+          <div style="font-size:13px; color:#666; margin-top:3px; line-height:1.5;">お店の固定や商品を絞るなど、選択する行為自体を減らす</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#fff0f6; border-left:4px solid #e91e8c; border-radius:0 10px 10px 0; padding:11px 16px;">
+        <div style="min-width:32px; height:32px; background:#e91e8c; color:white; border-radius:50%; font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0;">④</div>
+        <div>
+          <div style="font-size:17px; font-weight:900; color:#1a1a2e;">情報収集を制限する</div>
+          <div style="font-size:13px; color:#666; margin-top:3px; line-height:1.5;">リサーチする時としない時を明確に分け、決めたことの実行に集中</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#1a1a2e; border-left:4px solid #fde68a; border-radius:0 10px 10px 0; padding:11px 16px;">
+        <div style="min-width:32px; height:32px; background:#fde68a; color:#1a1a2e; border-radius:50%; font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0;">⑤</div>
+        <div>
+          <div style="font-size:17px; font-weight:900; color:white;">完璧主義をやめる</div>
+          <div style="font-size:13px; color:#aaa; margin-top:3px; line-height:1.5;">〆切を決め、それ以上考え続けるのをやめる</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== S26: ワーク① ===== -->
+  <div class="slide">
+    <div class="slide-label">WORKSHOP 01</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:86%"></div></div>
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+      <div style="background:linear-gradient(90deg,#7c6fcd,#e91e8c); color:white; border-radius:99px; padding:5px 16px; font-size:13px; font-weight:700;">✏️ ワーク ① / 3分</div>
+    </div>
+    <div class="slide-title">何をやめますか？</div>
+    <div class="divider"></div>
+    <div class="slide-sub">脳の充電を奪っているものを1つやめる</div>
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:10px;">
+      <!-- やめることリスト -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1;">
+        <div style="display:flex; align-items:center; gap:12px; background:#fff8e1; border:2px solid #fde68a; border-radius:12px; padding:14px 18px;">
+          <div style="font-size:22px;">🧹</div>
+          <div style="font-size:20px; font-weight:800; color:#1a1a2e;">永遠と掃除する</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; background:#fff8e1; border:2px solid #fde68a; border-radius:12px; padding:14px 18px;">
+          <div style="font-size:22px;">🍽️</div>
+          <div style="font-size:20px; font-weight:800; color:#1a1a2e;">献立に悩む時間</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; background:#fff8e1; border:2px solid #fde68a; border-radius:12px; padding:14px 18px;">
+          <div style="font-size:22px;">🛒</div>
+          <div style="font-size:20px; font-weight:800; color:#1a1a2e; line-height:1.3;">週に何回も買い物行く<br><span style="font-size:15px; font-weight:600; color:#d97706;">→ 定期購買にする</span></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; background:#fff8e1; border:2px solid #fde68a; border-radius:12px; padding:14px 18px;">
+          <div style="font-size:22px;">📱</div>
+          <div style="font-size:20px; font-weight:800; color:#1a1a2e;">ゼロから毎回LINE作る</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; background:#fff8e1; border:2px solid #fde68a; border-radius:12px; padding:14px 18px;">
+          <div style="font-size:22px;">🤔</div>
+          <div style="font-size:20px; font-weight:800; color:#1a1a2e; line-height:1.3;">１日何回も選択すること<br><span style="font-size:15px; font-weight:600; color:#d97706;">→ 選択する回数を減らす意識</span></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; background:#fce4ec; border:2px solid #e91e8c; border-radius:12px; padding:14px 18px;">
+          <div style="font-size:22px;">🙋</div>
+          <div style="font-size:20px; font-weight:800; color:#c2185b; line-height:1.3;">「自分がやった方が早い」<br>を手放す</div>
+        </div>
+      </div>
+      <!-- 記入エリア -->
+      <div style="background:#f8f5ff; border:2px dashed #7c6fcd; border-radius:12px; padding:12px 20px; display:flex; align-items:center; gap:12px;">
+        <div style="font-size:20px; font-weight:900; color:#7c6fcd; white-space:nowrap;">私がやめること →</div>
+        <div style="flex:1; border-bottom:2px solid #c4b5fd; min-height:28px;"></div>
+      </div>
+    </div>
+    <div class="work-number">①</div>
+  </div>
+
+  <!-- ===== S27（旧S28）: 仕組み化とは ===== -->
+  <div class="slide" style="background:#ffffff;">
+    <div class="slide-label">WORKSHOP 03</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:89%"></div></div>
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+      <div style="background:linear-gradient(90deg,#7c6fcd,#e91e8c); color:white; border-radius:99px; padding:5px 16px; font-size:13px; font-weight:700;">✏️ ワーク ② / 3分</div>
+    </div>
+    <div class="slide-title">何を<span class="accent">仕組み化</span>しますか？</div>
+    <div class="divider"></div>
+
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:10px;">
+
+      <!-- ブロック① -->
+      <div style="background:#f8f5ff; border-radius:12px; padding:14px 18px; border-left:4px solid #7c6fcd;">
+        <div style="font-size:21px; font-weight:900; color:#5d4a8a; margin-bottom:8px;">🔄 自分がいなくても回るルールをつくる</div>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <div style="font-size:21px; color:#333; line-height:1.6;">・投稿や返信を<strong>自動化</strong>する</div>
+          <div style="font-size:21px; color:#333; line-height:1.6;">・外部パートナーに任せる際に<strong>明確なルール（手順）を共有</strong>し、やり取りのコストを削減する</div>
+          <div style="font-size:21px; color:#333; line-height:1.6;">・家庭例: 朝食をセルフサービス形式にするなど、<strong>家族が自分で動けるルール</strong>を作る</div>
+          <div style="font-size:21px; color:#333; line-height:1.6;">・長期で家を空けても家庭が回る仕組みを作るために<strong>画像やプリントアウトで共有</strong>する<br>　<span style="color:#7c6fcd; font-weight:700;">→ 自分しか「分からない」「知らない」状態にはしない。</span></div>
+        </div>
+      </div>
+
+      <!-- ブロック② -->
+      <div style="background:#fff8e1; border-radius:12px; padding:14px 18px; border-left:4px solid #f59e0b;">
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <div style="font-size:21px; color:#333; line-height:1.6;">・仕事例: <strong>テンプレートの活用</strong>、特定曜日に特定タスクを行う日を決める<br>　→ 毎週土曜日配信、など</div>
+          <div style="font-size:21px; color:#333; line-height:1.6;">・未完了タスクの仕組み化: 1日で終わらないタスクは<br>　<strong>「どこまで出来て、明日はどこから始めるか」をメモして終わる</strong><br>　→ 未完了感をなくす</div>
+        </div>
+      </div>
+
+      <!-- 記入エリア -->
+      <div style="background:#f8f5ff; border:2px dashed #7c6fcd; border-radius:12px; padding:10px 20px; display:flex; align-items:center; gap:12px;">
+        <div style="font-size:21px; font-weight:900; color:#7c6fcd; white-space:nowrap;">私が仕組み化すること →</div>
+        <div style="flex:1; border-bottom:2px solid #c4b5fd; min-height:26px;"></div>
+      </div>
+
+    </div>
+    <div class="work-number">③</div>
+  </div>
+
+  <!-- ===== S28: ワーク③ 効率化 ===== -->
+  <div class="slide" style="background:#ffffff;">
+    <div class="slide-label">WORKSHOP 03</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:93%"></div></div>
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+      <div style="background:linear-gradient(90deg,#7c6fcd,#e91e8c); color:white; border-radius:99px; padding:5px 16px; font-size:13px; font-weight:700;">✏️ ワーク ③ / 3分</div>
+    </div>
+    <div class="slide-title">何を<span class="accent">効率化</span>しますか？</div>
+    <div class="divider"></div>
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:8px;">
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#f8f5ff; border-left:4px solid #7c6fcd; border-radius:0 10px 10px 0; padding:10px 16px;">
+        <div style="font-size:20px; flex-shrink:0;">🎯</div>
+        <div>
+          <div style="font-size:21px; font-weight:900; color:#5d4a8a; margin-bottom:3px;">シングルタスクの推奨</div>
+          <div style="font-size:21px; color:#333; line-height:1.5;">マルチタスクは認知リソースを消耗させ効率を低下させるため、一つの作業に集中する。</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#fff8e1; border-left:4px solid #f59e0b; border-radius:0 10px 10px 0; padding:10px 16px;">
+        <div style="font-size:20px; flex-shrink:0;">📦</div>
+        <div>
+          <div style="font-size:21px; font-weight:900; color:#d97706; margin-bottom:3px;">バッチ処理の活用</div>
+          <div style="font-size:21px; color:#333; line-height:1.5;">同じ種類の作業（例：動画撮影・SNS投稿作成・自分メンテナンス・買い物）を種類ごとにまとめて行い、タスク切り替えのロスを防ぐ。</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#f0fdf4; border-left:4px solid #4ade80; border-radius:0 10px 10px 0; padding:10px 16px;">
+        <div style="font-size:20px; flex-shrink:0;">🌅</div>
+        <div>
+          <div style="font-size:21px; font-weight:900; color:#16a34a; margin-bottom:3px;">朝の時間の活用</div>
+          <div style="font-size:21px; color:#333; line-height:1.5;">1日で最も認知リソースが豊富な朝の時間を、家事やスマホチェックではなく、計画や重要な思考に使う。</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; background:#1a1a2e; border-left:4px solid #fde68a; border-radius:0 10px 10px 0; padding:10px 16px;">
+        <div style="font-size:20px; flex-shrink:0;">⭐</div>
+        <div>
+          <div style="font-size:21px; font-weight:900; color:#fde68a; margin-bottom:3px;">朝の30分の神聖な時間</div>
+          <div style="font-size:21px; color:#ccc; line-height:1.5;">起床後の30分はスマホを見ず、瞑想やジャーナリングなど自分と向き合う時間に。その日の予定や認知リソース（脳の充電、エネルギー）の配分を計画することが1日の充実度を大きく左右する。</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="work-number">③</div>
+  </div>
+
+  <!-- ===== S28.5: 回復 ===== -->
+  <div class="slide" style="background:#ffffff;">
+    <div class="slide-label">RECOVERY</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+    <div class="slide-title">最後に…<span class="accent">＊回復</span></div>
+    <div class="divider"></div>
+    <div class="content" style="flex:1; display:flex; flex-direction:column; gap:16px; justify-content:center;">
+
+      <!-- メッセージ -->
+      <div style="background:linear-gradient(135deg,#1a1a2e,#2d1b4e); border-radius:14px; padding:20px 24px; text-align:center;">
+        <div style="font-size:23px; font-weight:900; color:#fde68a; margin-bottom:8px;">⚡ 認知リソース（脳の充電・エネルギー）の回復必須</div>
+        <div style="font-size:23px; color:#ddd; line-height:1.7;">認知リソースは1日で消費されるため、<br><strong style="color:white;">意識的に回復させることが必須！</strong></div>
+      </div>
+
+      <!-- 回復方法 -->
+      <div style="background:#f8f5ff; border-radius:14px; padding:18px 24px;">
+        <div style="font-size:23px; font-weight:900; color:#5d4a8a; margin-bottom:14px;">🔋 具体的な回復方法</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px; background:white; border-radius:10px; padding:12px 16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:24px;">😴</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">十分な睡眠をとる</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; background:white; border-radius:10px; padding:12px 16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:24px;">🏃</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">運動をする</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; background:white; border-radius:10px; padding:12px 16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:24px;">🌿</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">自然の中に身を置く</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; background:white; border-radius:10px; padding:12px 16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:24px;">🧘</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">瞑想をする</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; background:white; border-radius:10px; padding:12px 16px; box-shadow:0 2px 8px rgba(0,0,0,0.06); grid-column:1/-1;">
+            <div style="font-size:24px;">📵</div>
+            <div style="font-size:23px; font-weight:700; color:#1a1a2e;">デジタルデトックス（デジタル機器から離れる）</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== S29: まとめ クロージング ===== -->
+  <div class="slide">
+    <div class="slide-label">CLOSING</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:97%"></div></div>
+    <div class="slide-title">時間がないは、<span class="accent">気のせい</span></div>
+    <div class="slide-sub">自分が時間をどう捉えているか？が違うだけ</div>
+    <div class="divider"></div>
+    <div class="content">
+      <div style="font-size:16px; font-weight:700; color:#1a1a2e; margin-bottom:10px;">一番大切なのは　脳の充電（認知リソース）を減らさないこと</div>
+      <div class="check-list">
+        <div class="check-item"><span class="check">✅</span>選択の回数を減らす</div>
+        <div class="check-item"><span class="check">✅</span>「足りない！」という思考を変換する</div>
+        <div class="check-item"><span class="check">✅</span>未完了タスクを全部外に出して脳の容量を空ける</div>
+        <div class="check-item"><span class="check">✅</span>PCのタブを開きっぱなしにしない（マルチタスクをやめる）</div>
+      </div>
+      <div style="margin-top:12px; background:#f8f5ff; border-radius:10px; padding:14px; border-left:4px solid #7c6fcd;">
+        <div style="font-size:15px; font-weight:700; color:#7c6fcd; margin-bottom:6px;">そのために決めたこと</div>
+        <div style="font-size:14px; color:#555; line-height:1.8;">① やめること　② 仕組み化すること　③ 効率化すること<br>→ <strong>定期的に見返す</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S30: オファー ===== -->
+  <div class="slide">
+    <div class="slide-label">THANK YOU</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+    <div class="slide-title">ありがとうございました</div>
+    <div class="divider"></div>
+    <div class="content" style="flex:1;">
+      <div class="step-item yellow" style="padding:18px 24px; margin-bottom:10px;">
+        <div class="step-num" style="background:#d97706; font-size:20px;">🎁</div>
+        <div class="step-content">
+          <div class="step-title" style="font-size:18px;">特別プレゼント：眞角陽子との個別セッション（サロン診断）</div>
+        </div>
+      </div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">✅</div>
+          <div class="step-content">
+            <div class="step-body">サポート希望される方には、あなたの現在のボトルネックを明確にし、本質から改善。仕事の効率化でも、家事育児の効率化でも、時間革命のためのあなただけの専用サポートアプリを提供します。</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✅</div>
+          <div class="step-content">
+            <div class="step-title">希望者はLINEに送ってください</div>
+            <div class="step-body" style="font-size:16px; font-weight:700; color:#7c6fcd;">「個別希望」</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px; text-align:center; font-size:15px; color:#555; font-weight:600;">
+        眞角陽子（マスミヨウコ）　@youco.kurukuru
+      </div>
+    </div>
+  </div>
+
+</div><!-- /slide-wrapper -->
+
+<!-- ナビゲーション -->
+<div class="nav">
+  <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>‹</button>
+  <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">›</button>
+</div>
+
+<div class="slide-counter">
+  <span id="currentNum">1</span> / <span id="totalNum">30</span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  const total = slides.length;
+  document.getElementById('totalNum').textContent = total;
+
+  function changeSlide(dir) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, current + dir));
+    slides[current].classList.add('active');
+    document.getElementById('currentNum').textContent = current + 1;
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+
+</body>
+</html>
