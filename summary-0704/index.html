@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>時間革命セミナー まとめ｜眞角陽子</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #ffffff;
+    color: #222;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  .hero {
+    background: #ffffff;
+    border-bottom: 4px solid #e8f500;
+    padding: 52px 24px 40px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow { font-size: 12px; font-weight: 700; color: #888; letter-spacing: 0.15em; margin-bottom: 10px; }
+  .hero-num { font-size: 88px; font-weight: 900; color: #1e3366; line-height: 1; margin-bottom: 4px; font-style: italic; }
+  .hero-slash { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .hero-slash-line { width: 4px; height: 40px; background: #888; transform: skewX(-12deg); }
+  .hero-title { font-size: clamp(20px, 4vw, 30px); font-weight: 900; color: #1e3366; }
+  .hero-author { font-size: 13px; color: #555; margin-top: 8px; }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+  .section { padding: 56px 0 0; }
+
+  .section-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
+  .section-num { font-size: 56px; font-weight: 900; color: #1e3366; line-height: 1; flex-shrink: 0; font-style: italic; }
+  .section-header-right { padding-top: 6px; }
+  .section-label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+  .section-title { font-size: clamp(18px, 3.5vw, 24px); font-weight: 900; color: #1e3366; line-height: 1.3; }
+
+  .highlight-box {
+    background: #e8f500;
+    padding: 14px 22px;
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 900; color: #1a1a1a;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .badge-block { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
+  .badge-circle {
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 2px solid #2d5fc4; background: #eef2ff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900; color: #1e3366;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .badge-content { flex: 1; }
+
+  .body-text { font-size: 15px; color: #333; line-height: 1.9; margin-bottom: 14px; }
+  .body-text strong { color: #1a1a1a; }
+  .body-text u { text-decoration: none; background: linear-gradient(transparent 60%, #e8f500 60%); }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .tag { background: #eef2ff; color: #2d5fc4; font-size: 13px; font-weight: 700; padding: 5px 14px; border-radius: 4px; }
+  .tag::before { content: "◆ "; font-size: 10px; }
+
+  .divider { border: none; border-top: 1px solid #e8e8e8; margin: 40px 0 0; }
+
+  .quote-box {
+    background: #1e3366; border-radius: 4px; padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+  .quote-box .q-text { font-size: clamp(18px, 3.5vw, 26px); font-weight: 900; color: #e8f500; line-height: 1.4; margin-bottom: 8px; }
+  .quote-box .q-sub { font-size: 14px; color: #aac4ff; }
+
+  .point-list { display: flex; flex-direction: column; gap: 0; }
+  .point-item { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+  .point-item:last-child { border-bottom: none; }
+  .point-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .point-text { font-size: 15px; color: #333; line-height: 1.8; }
+  .point-text strong { color: #1a1a1a; }
+
+  .pillar-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+  @media(min-width: 560px) { .pillar-grid { grid-template-columns: 1fr 1fr; } }
+  .pillar {
+    border: 2px solid #e8f500; border-radius: 4px; padding: 20px 18px;
+  }
+  .pillar-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #1e3366; color: white; font-size: 14px; font-weight: 900; margin-bottom: 10px; }
+  .pillar-title { font-size: 16px; font-weight: 900; color: #1e3366; margin-bottom: 6px; }
+  .pillar-body { font-size: 13px; color: #555; line-height: 1.6; }
+
+  .step-list { display: flex; flex-direction: column; gap: 0; }
+  .step-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+  .step-item:last-child { border-bottom: none; }
+  .step-arrow { color: #2d5fc4; font-weight: 900; flex-shrink: 0; font-size: 15px; margin-top: 2px; }
+  .step-text { font-size: 15px; color: #333; line-height: 1.8; }
+  .step-text strong { color: #1a1a1a; }
+
+  .recovery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .recovery-item { background: #eef2ff; border-radius: 4px; padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; color: #1e3366; }
+
+  .check-list { display: flex; flex-direction: column; gap: 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 13px 0; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #333; }
+  .check-item:last-child { border-bottom: none; }
+  .check-mark { background: #e8f500; color: #1a1a1a; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 2px; flex-shrink: 0; margin-top: 3px; }
+
+  .youco-voice {
+    background: #fffef0; border-left: 4px solid #e8f500;
+    padding: 16px 20px; margin-bottom: 16px; border-radius: 0 4px 4px 0;
+    font-size: 14px; color: #555; line-height: 1.8;
+  }
+  .youco-voice::before { content: "💬 youcoより："; display: block; font-size: 12px; font-weight: 700; color: #1e3366; margin-bottom: 6px; }
+
+  .closing { background: #1e3366; padding: 48px 24px; text-align: center; margin-top: 60px; }
+  .closing-title { font-size: clamp(18px, 4vw, 26px); font-weight: 900; color: #e8f500; margin-bottom: 14px; }
+  .closing-sub { font-size: 15px; color: #aac4ff; margin-bottom: 28px; line-height: 1.8; }
+  .closing-btn { display: inline-block; background: #e8f500; color: #1a1a1a; font-size: 16px; font-weight: 900; padding: 14px 40px; border-radius: 4px; text-decoration: none; }
+  .closing-line { font-size: 13px; color: #7a9ccf; margin-top: 16px; }
+
+  footer { text-align: center; padding: 28px 24px; font-size: 12px; color: #aaa; border-top: 1px solid #eee; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">7/4（土）21:00〜 開催｜セミナー当日まとめ</div>
+  <div class="hero-num">01</div>
+  <div class="hero-slash">
+    <div class="hero-slash-line"></div>
+    <div class="hero-title">時間革命セミナー まとめ</div>
+  </div>
+  <div class="hero-author">ママ美容師の「時間がない！」を手放す｜眞角陽子（マスミヨウコ）@youco.kurukuru</div>
+</div>
+
+<div class="container">
+
+  <!-- 今日のゴール -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-header-right">
+        <div class="section-label">TODAY'S GOAL</div>
+        <div class="section-title">今日のゴール</div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="q-text">「時間がない」という状態から<br>卒業する</div>
+      <div class="q-sub">時間がないというのは実は気のせいだった——と深く理解して、明日からの時間の使い方を変え、人生を豊かにする</div>
+    </div>
+
+    <div class="youco-voice">
+      ママ美容師さんのお悩みダントツNo.1が「時間の問題」。時間に追われてる状態を手放さないと、新しいことを学べないし、開業もできない。私自身が髪育に出会ってから時間がないを卒業できた体験から、今日お伝えします。
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">時間がない → 卒業</span>
+      <span class="tag">明日から変わる</span>
+      <span class="tag">人生を豊かに</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 時間がないの正体 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-header-right">
+        <div class="section-label">KEY MESSAGE</div>
+        <div class="section-title">「時間がない」の正体</div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">2-1</div>
+      <div class="badge-content">
+        <div class="highlight-box">1日は、全員24時間</div>
+        <div class="body-text" style="margin-top:14px;">
+          旅行の日も、サロンが満席の日も、バタバタの日も——<strong>誰にでも1日は24時間</strong>。物理的に時間自体は変わらない。<br>
+          「私には5時間しかない」という人はいない。みんな24時間ある。
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">2-2</div>
+      <div class="badge-content">
+        <div class="highlight-box">「時間がない」は気のせい</div>
+        <div class="highlight-box">正確には——認知リソース（考える余裕）が足りていない</div>
+        <div class="body-text" style="margin-top:14px;">
+          時間自体はあるのに「時間がない」と感じるのは、<u><strong>自分が時間をどう捉えているか</strong></u>の問題。<br>
+          自分の考える余裕＝認知リソースが足りていないから、そう感じてしまう。
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">2-3</div>
+      <div class="badge-content">
+        <div class="highlight-box">認知リソース＝脳の充電</div>
+        <div class="body-text" style="margin-top:14px;">
+          スマホのバッテリーと同じ。朝起きた時は<strong>100%フル充電</strong>。<br>
+          その充電をどう使うかが「時間がある感覚」の正体。<br>
+          充電を無駄づかいしなければ、時間は生まれる。充電を奪うものを知れば、対処できる。
+        </div>
+        <div class="tag-row">
+          <span class="tag">認知リソース</span>
+          <span class="tag">脳の充電</span>
+          <span class="tag">朝＝100%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 充電泥棒3つ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-header-right">
+        <div class="section-label">ENEMY</div>
+        <div class="section-title">脳の充電を奪う3つの敵</div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">3-1</div>
+      <div class="badge-content">
+        <div class="highlight-box">充電泥棒① 欠乏マインド</div>
+        <div class="body-text" style="margin-top:14px;">
+          「足りない・時間がない」という焦りモード。感じた瞬間に<strong>トンネル現象</strong>が起き、足りないものしか見えなくなる。<br>
+          選択肢が急激に狭まり、大事なことを後回しにしてしまう→ <u>悪循環が加速</u>。
+        </div>
+        <div class="youco-voice">
+          ハーバード大学の研究で「足りない」と感じるだけで人の判断力はIQが<strong>13ポイント</strong>も下がると証明されています。時間だけじゃなくお金でも何でも「足りない」と思った瞬間、正しい判断ができなくなっていく。
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">3-2</div>
+      <div class="badge-content">
+        <div class="highlight-box">充電泥棒② 時間汚染</div>
+        <div class="body-text" style="margin-top:14px;">
+          体はここにあるのに、頭は別のところにある「<strong>頭の二股</strong>」状態。<br>
+          LINEの返信を書いている途中に子供に呼ばれ→宅急便→お風呂が沸く→「……何書いてたっけ？」<br>
+          <u>切り替えるたびに充電が消耗</u>していく。
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">3-3</div>
+      <div class="badge-content">
+        <div class="highlight-box">充電泥棒③ 未完了タスク</div>
+        <div class="body-text" style="margin-top:14px;">
+          やり残しが頭の中でずっと回り続ける。「LINE返信しなきゃ」「ベルマーク持っていかないと」——<br>
+          <u>やっていない間も充電が勝手に減り続けている。</u>
+        </div>
+        <div class="youco-voice">
+          彼氏が5人いると思ってください。名前を間違えないようにとか、どの日に会うかとか——くだらないことにリソースを取られる。ママさんってそういう状態なんです。同時進行でいろんなことを回さないといけないから、どんどん充電が減っていく。
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="q-text">1時間あっても、使えているのは<br>実質<span style="color:white;">15分</span></div>
+      <div class="q-sub">欠乏マインド → 時間汚染 → 未完了タスク の3つで、せっかくの1時間が15分になってしまう</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 逆転の4本柱 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-header-right">
+        <div class="section-label">SOLUTION</div>
+        <div class="section-title">逆転のタイムマネジメント</div>
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">①</div>
+        <div class="pillar-title">やめる・手放す</div>
+        <div class="pillar-body">選択を減らし、脳の充電を守る</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">②</div>
+        <div class="pillar-title">仕組み化する</div>
+        <div class="pillar-body">自分以外がやれるルールを作る</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">③</div>
+        <div class="pillar-title">効率化する</div>
+        <div class="pillar-body">同じ種類の作業をまとめてやる</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">④</div>
+        <div class="pillar-title">回復させる</div>
+        <div class="pillar-body">完璧主義をやめて充電を補充する</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- やめる・手放す -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-header-right">
+        <div class="section-label">STEP ①</div>
+        <div class="section-title">やめる・手放す</div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">5-1</div>
+      <div class="badge-content">
+        <div class="highlight-box">記憶を外に出す</div>
+        <div class="body-text" style="margin-top:14px;">
+          未完了タスクや気になることをメモ帳・スマホに全部書き出す。<strong>書いた瞬間、未完了ではなくなる。</strong><br>
+          パソコンのタブを開きっぱなしにしない感覚で、脳を空ける。
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">5-2</div>
+      <div class="badge-content">
+        <div class="highlight-box">ルールを決めて考えない</div>
+        <div class="body-text" style="margin-top:14px;">
+          人は1日に<strong>35,000回の選択</strong>をしていると言われている。その選択を減らすことが脳の充電を守ること。
+        </div>
+        <div class="step-list">
+          <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>朝ごはんを固定する</strong>：「ご飯・味噌汁・納豆」に決めたら毎朝「何にしよう？」から解放される</div></div>
+          <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>服装をパターン化</strong>：曜日で色を固定するなど、カテゴリーで決める（スティーブ・ジョブズが毎日同じ服を着た理由）</div></div>
+          <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>水曜か木曜を「さぼる日」に固定</strong>：週の真ん中に何もしない日を入れると、そこまで頑張れる</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">5-3</div>
+      <div class="badge-content">
+        <div class="highlight-box">自分の仕事を一番先に入れる</div>
+        <div class="body-text" style="margin-top:14px;">
+          今まで：家事育児→サロンワーク→（余ったら）自分の発信<br>
+          これから：<strong>公式LINEの発信→サロンワーク→家事育児</strong>
+        </div>
+        <div class="youco-voice">
+          子供が寝ない時期に「お母さんの営業は9時で終わり」と宣言したら、子供もそれに合わせてくれるようになりました。自分が先に終わりのルールを作ることが大事。
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-block">
+      <div class="badge-circle">5-4</div>
+      <div class="badge-content">
+        <div class="highlight-box">家事を減らす・定期購入を活用</div>
+        <div class="body-text" style="margin-top:14px;">
+          毎日買い物に行く→週1回に固定・消耗品はAmazon等で定期購入に。<br>
+          <u>「選択する回数を減らす」という意識そのものが脳の充電を守る。</u>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 仕組み化 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-header-right">
+        <div class="section-label">STEP ②</div>
+        <div class="section-title">仕組み化する</div>
+      </div>
+    </div>
+
+    <div class="body-text">自分がいなくても回るルールを作る。<u><strong>「自分しか知らない」状態を作らない。</strong></u></div>
+
+    <div class="step-list">
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>予約の仕組み化</strong>：年間・固定枠で取り、毎回やり取りするコストを削減</div></div>
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>LINEはテンプレートを何パターンか作成</strong>：ゼロから考えない状態にする</div></div>
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>役割分担を明確化</strong>：「夜ご飯・食べさせるまでがママ担当、片付けからがパパ担当」と決める</div></div>
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>見える化</strong>：写真・プリントアウトで家族が自分で動ける状態を作る（持ち物リストを番号付き写真で管理など）</div></div>
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>未完了タスクの仕組み化</strong>：「どこまで終わって、明日はどこから始めるか」を書いて終わる→未完了感をなくす</div></div>
+    </div>
+
+    <div class="youco-voice">
+      「豆腐を買ってきて」と頼んだら絹豆腐を買ってきて麻婆豆腐がぐちゃぐちゃに。それぐらい言わないとわからない。教えてない自分の責任でもある。仕組みを使って「知らせる」のが最初の一歩。
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 効率化 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-header-right">
+        <div class="section-label">STEP ③</div>
+        <div class="section-title">効率化する（バッチ処理）</div>
+      </div>
+    </div>
+
+    <div class="body-text">同じ種類の作業をまとめてやる＝<u><strong>バッチ処理</strong></u>。切り替えるたびに充電が減るから、切り替えを減らす。</div>
+
+    <div class="step-list">
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>シングルタスク</strong>：ブログを書くならブログに全集中。途中でLINE返信・SNSチェックをしない</div></div>
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>曜日で作業を固定</strong>：台本作りの日・撮影の日・編集の日・配信の日を分ける</div></div>
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>朝の時間を最優先</strong>：1日で最も脳の充電が豊富な朝は、計画・重要な思考に使う。SNSチェックで消費しない</div></div>
+      <div class="step-item"><div class="step-arrow">→</div><div class="step-text"><strong>決めたことをする時間はSNSを見ない</strong>：投稿後についつい流れてくるリールを見続けて30分溶かすのをやめる</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 回復 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-header-right">
+        <div class="section-label">STEP ④</div>
+        <div class="section-title">回復させる</div>
+      </div>
+    </div>
+
+    <div class="body-text">
+      認知リソースは1日で消費される。<u><strong>意識的に回復させることが必須。</strong></u><br>
+      「時間がないからできない」ではなく、これをやらないから時間がない状態から抜け出せない。
+    </div>
+
+    <div class="recovery-grid">
+      <div class="recovery-item"><span>😴</span>十分な睡眠をとる</div>
+      <div class="recovery-item"><span>🏃</span>運動をする</div>
+      <div class="recovery-item"><span>🌿</span>自然の中に身を置く</div>
+      <div class="recovery-item"><span>🧘</span>瞑想をする</div>
+      <div class="recovery-item" style="grid-column:1/-1;"><span>📵</span>デジタルデトックス（デジタル機器から離れる）</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- まとめ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-header-right">
+        <div class="section-label">CLOSING</div>
+        <div class="section-title">時間がないは、気のせい</div>
+      </div>
+    </div>
+
+    <div class="body-text">自分が時間をどう捉えているか？が違うだけ。<br>一番大切なのは <strong>脳の充電（認知リソース）を減らさないこと</strong>。</div>
+
+    <div class="check-list">
+      <div class="check-item"><div class="check-mark">CHECK</div>選択の回数を減らす</div>
+      <div class="check-item"><div class="check-mark">CHECK</div>「足りない！」という思考を変換する</div>
+      <div class="check-item"><div class="check-mark">CHECK</div>未完了タスクを全部外に出して脳の容量を空ける</div>
+      <div class="check-item"><div class="check-mark">CHECK</div>マルチタスクをやめる（PCのタブを開きっぱなしにしない）</div>
+    </div>
+
+    <div class="body-text" style="margin-top:20px; padding:16px 20px; background:#eef2ff; border-left:4px solid #2d5fc4;">
+      そのために今日決めたこと<br>
+      <strong>① やめること　② 仕組み化すること　③ 効率化すること</strong><br>
+      → 定期的に見返す
+    </div>
+  </div>
+
+</div>
+
+<div class="closing">
+  <div class="closing-title">個別セッション（サロン診断）のご案内</div>
+  <div class="closing-sub">
+    サポート希望される方には、あなたの現在のボトルネックを明確にし、本質から改善。<br>
+    仕事の効率化でも、家事育児の効率化でも、<br>
+    時間革命のためのあなただけの専用サポートアプリを提供します。
+  </div>
+  <a href="https://x.gd/Zg9Kv" class="closing-btn">LINEで「個別希望」と送る</a>
+  <div class="closing-line">@youco.kurukuru</div>
+</div>
+
+<footer>© 2025 眞角陽子（マスミヨウコ）｜時間革命セミナー 7/4</footer>
+
+</body>
+</html>
